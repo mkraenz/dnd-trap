@@ -1,4 +1,4 @@
-import { HStack, VStack } from "@chakra-ui/react";
+import { VStack, Wrap, WrapItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import AddCharButton from "./AddCharButton";
 import CharDisplay from "./charDisplay";
@@ -22,7 +22,7 @@ const defaultChars = {
   Carl: { name: "Carl", hp: 129, maxHp: 140, resistance: true, consSave: 2 },
 };
 
-const rollD20 = () => Math.round(Math.random() * 20 + 1);
+const rollD20 = () => Math.floor(Math.random() * 20 + 1);
 
 const savingThrowFail = (saveBonus: number, roll: number) =>
   saveBonus + roll < TRAP_DC;
@@ -70,11 +70,19 @@ function App() {
       <AddCharButton
         addChar={(newChar) => setChars({ ...chars, [newChar.name]: newChar })}
       />
-      <HStack justifyContent={"space-evenly"} gap={16} p={16} minW="100vw">
+      <Wrap
+        justify={"space-evenly"}
+        justifyContent={"center"}
+        p={16}
+        minW="100vw"
+        spacing="10%"
+      >
         {Object.values(chars).map((char, index) => (
-          <CharDisplay {...char} onRoll={looseHP(char.name)} key={char.name} />
+          <WrapItem key={char.name}>
+            <CharDisplay {...char} onRoll={looseHP(char.name)} />
+          </WrapItem>
         ))}
-      </HStack>
+      </Wrap>
       <DiceRoll result={diceRollResult} workaround={diceRollWorkaround} />
     </VStack>
   );
