@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AddCharButton from "./AddCharButton";
 import CharDisplay from "./charDisplay";
 import DiceRoll from "./DiceRoll";
+import useDiceRollWorkaround from "./diceRollWorkaround.hook";
 import { Char } from "./interface";
 
 const MAX_TRAP_DMG = 20;
@@ -44,12 +45,12 @@ function App() {
       ? JSON.parse(localStorage.getItem("chars") || "")
       : {}
   );
-  const [diceRollWorkaround, setDiceRollWorkaround] = useState(0);
-  const [diceRollResult, setDiceRollResult] = useState(0);
-
   useEffect(() => {
     localStorage.setItem("chars", JSON.stringify(chars));
   }, [chars]);
+
+  const { diceRollResult, diceRollWorkaround, setResult } =
+    useDiceRollWorkaround();
 
   const looseHP = (targetKey: string) => () => {
     const target = chars[targetKey];
@@ -61,8 +62,7 @@ function App() {
     const newChars = { ...chars, [targetKey]: withNewHP };
 
     setChars(newChars);
-    setDiceRollResult(roll);
-    setDiceRollWorkaround(diceRollWorkaround + 1);
+    setResult(roll);
   };
 
   return (
