@@ -37,7 +37,7 @@ const AddCharButton: FC<Props> = ({ addChar }) => {
   return (
     <>
       <Button onClick={onOpen} colorScheme="blue">
-        Add Char
+        Add Character
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
