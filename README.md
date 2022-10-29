@@ -16,7 +16,7 @@ BUCKET_NAME="YOUR_BUCKET_NAME"
 
 npm run build
 aws s3 rm s3://${BUCKET_NAME} --recursive
-aws s3 cp dist s3://${BUCKET_NAME} --recursive
+aws s3 cp dist s3://${BUCKET_NAME} --recursive --acl public-read
 ```
 
 ## Resources
