@@ -19,7 +19,12 @@ interface Props {
 
 const AddCharButton: FC<Props> = ({ addChar }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [char, setChar] = useState<Char>({ name: "", hp: 0, maxHp: 0 });
+  const [char, setChar] = useState<Char>({
+    name: "",
+    hp: 0,
+    maxHp: 0,
+    resistance: false,
+  });
   const addNewChar = () => {
     addChar(char);
     onClose();
@@ -41,6 +46,9 @@ const AddCharButton: FC<Props> = ({ addChar }) => {
               onNameChange={(name) => setChar({ ...char, name })}
               onHpChange={(hp) => setChar({ ...char, hp })}
               onMaxhpChange={(maxHp) => setChar({ ...char, maxHp })}
+              onResistanceChange={(resistance) =>
+                setChar({ ...char, resistance })
+              }
               char={char}
             />
           </ModalBody>

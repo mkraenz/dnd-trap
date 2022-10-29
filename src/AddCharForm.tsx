@@ -1,4 +1,11 @@
-import { Flex, FormControl, FormLabel, HStack, Input } from "@chakra-ui/react";
+import {
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  HStack,
+  Input,
+} from "@chakra-ui/react";
 import { ChangeEvent, FC } from "react";
 import { Char } from "./interface";
 
@@ -7,6 +14,7 @@ interface Props {
   onNameChange: (name: string) => void;
   onHpChange: (hp: number) => void;
   onMaxhpChange: (maxhp: number) => void;
+  onResistanceChange: (resistance: boolean) => void;
 }
 
 const insecurelySanitizeNumberInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +29,7 @@ const AddCharForm: FC<Props> = ({
   onNameChange,
   onHpChange,
   onMaxhpChange,
+  onResistanceChange,
 }) => {
   return (
     <>
@@ -63,6 +72,17 @@ const AddCharForm: FC<Props> = ({
           />
         </FormControl>
       </HStack>
+      <Flex>
+        <FormControl mt="4%">
+          <Checkbox
+            id="resistance"
+            isChecked={char.resistance}
+            onChange={(e) => onResistanceChange(e.currentTarget.checked)}
+          >
+            Resistance
+          </Checkbox>
+        </FormControl>
+      </Flex>
     </>
   );
 };

@@ -1,20 +1,25 @@
 import { Button, Text, VStack } from "@chakra-ui/react";
 import { FC } from "react";
+import { Char } from "./interface";
 
-interface Character {
-  name: string;
-  hp: number;
-  maxHp: number;
+interface Character extends Char {
   onRoll: () => void;
 }
 
-const charDisplay: FC<Character> = ({ name, hp, maxHp, onRoll }) => {
+const charDisplay: FC<Character> = ({
+  name,
+  hp,
+  maxHp,
+  resistance,
+  onRoll,
+}) => {
   return (
-    <VStack>
-      <Text>Name: {name}</Text>
+    <VStack alignItems={"flex-start"}>
+      <Text>{name}</Text>
       <Text>
-        HP: {hp} / {maxHp}
+        {hp} / {maxHp}
       </Text>
+      <Text>{resistance ? "has resistance" : "no resistance"}</Text>
       <Button colorScheme="blue" onClick={onRoll}>
         Roll
       </Button>
