@@ -9,6 +9,16 @@ usage is from Desktop
   - show result of dice roll -> success/miss -> lose hp
 - show team
 
+## Deployment
+
+```sh
+BUCKET_NAME="YOUR_BUCKET_NAME"
+
+npm run build
+aws s3 rm s3://${BUCKET_NAME} --recursive
+aws s3 cp dist s3://${BUCKET_NAME} --recursive
+```
+
 ## Resources
 
 - [Chakra UI](https://chakra-ui.com/getting-started)
