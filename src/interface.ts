@@ -3,4 +3,6 @@ export interface Char {
   hp: number;
   maxHp: number;
   resistance: boolean;
+  /** cons = constitution, >0, integer */
+  consSave: number;
 }

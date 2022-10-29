@@ -1,4 +1,4 @@
-import { Button, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Button, HStack, Text, VStack } from "@chakra-ui/react";
 import { FC } from "react";
 import { Char } from "./interface";
 
@@ -11,15 +11,20 @@ const charDisplay: FC<Character> = ({
   hp,
   maxHp,
   resistance,
+  consSave,
   onRoll,
 }) => {
   return (
     <VStack alignItems={"flex-start"}>
-      <Text>{name}</Text>
+      <HStack>
+        <Avatar name={name} size="sm" />
+        <Text>{name}</Text>
+      </HStack>
       <Text>
         {hp} / {maxHp}
       </Text>
       <Text>{resistance ? "has resistance" : "no resistance"}</Text>
+      <Text>Cons save: {consSave}</Text>
       <Button colorScheme="blue" onClick={onRoll}>
         Roll
       </Button>

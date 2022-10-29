@@ -15,6 +15,7 @@ interface Props {
   onHpChange: (hp: number) => void;
   onMaxhpChange: (maxhp: number) => void;
   onResistanceChange: (resistance: boolean) => void;
+  onConsSaveChange: (consSave: number) => void;
 }
 
 const insecurelySanitizeNumberInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,11 +31,12 @@ const AddCharForm: FC<Props> = ({
   onHpChange,
   onMaxhpChange,
   onResistanceChange,
+  onConsSaveChange,
 }) => {
   return (
     <>
       <Flex>
-        <FormControl mr="5%">
+        <FormControl>
           <FormLabel htmlFor="name" fontWeight={"normal"}>
             Name
           </FormLabel>
@@ -72,8 +74,22 @@ const AddCharForm: FC<Props> = ({
           />
         </FormControl>
       </HStack>
-      <Flex>
-        <FormControl mt="4%">
+      <Flex mt="4%">
+        <FormControl maxW="50%">
+          <FormLabel htmlFor="cons-save" fontWeight={"normal"}>
+            Cons save
+          </FormLabel>
+          <Input
+            id="cons-save"
+            type="number"
+            placeholder="10"
+            value={char.consSave}
+            onChange={(e) => onConsSaveChange(insecurelySanitizeNumberInput(e))}
+          />
+        </FormControl>
+      </Flex>
+      <Flex mt="4%">
+        <FormControl>
           <Checkbox
             id="resistance"
             isChecked={char.resistance}

@@ -24,17 +24,21 @@ const AddCharButton: FC<Props> = ({ addChar }) => {
     hp: 0,
     maxHp: 0,
     resistance: false,
+    consSave: 0,
   });
   const addNewChar = () => {
     addChar(char);
     onClose();
   };
 
-  const charInvalid = !char.name || char.hp <= 0 || char.maxHp <= 0;
+  const charInvalid =
+    !char.name || char.hp <= 0 || char.maxHp <= 0 || char.consSave <= 0;
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen} colorScheme="blue">
+        Add Char
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -49,6 +53,7 @@ const AddCharButton: FC<Props> = ({ addChar }) => {
               onResistanceChange={(resistance) =>
                 setChar({ ...char, resistance })
               }
+              onConsSaveChange={(consSave) => setChar({ ...char, consSave })}
               char={char}
             />
           </ModalBody>
